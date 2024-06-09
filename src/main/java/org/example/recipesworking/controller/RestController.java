@@ -8,9 +8,7 @@ import org.example.recipesworking.service.ArticleService;
 import org.example.recipesworking.service.implementation.FoodService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -42,5 +40,13 @@ public class RestController {
         Integer calories = foodService.caloriesFromMeal(meal);
 
         return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+    }
+
+
+    @DeleteMapping("/deleteArticle")
+    public ResponseEntity<String> deleteArticle(@RequestParam Long articleId){
+        articleService.deleteArticle(articleId);
+
+        return new ResponseEntity<>("Deleted",HttpStatus.NO_CONTENT);
     }
 }

@@ -8,7 +8,7 @@ public class Recipe {
 
     private Long id;
     private String name;
-    private HashMap<Long,Integer> ingrediences;
+    private HashMap<Long,Integer> ingredients;
     private int serving;
     private Integer calories;
     private Integer caloriesPerServing;

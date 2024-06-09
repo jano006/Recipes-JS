@@ -44,4 +44,9 @@ public class ArticleServiceImp implements ArticleService {
 
         return articleRepository.save(article);
     }
+
+    @Override
+    public void deleteArticle(Long articleId) {
+        articleRepository.deleteById(articleId);
+    }
 }

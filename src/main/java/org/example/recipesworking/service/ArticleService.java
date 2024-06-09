@@ -14,4 +14,6 @@ public interface ArticleService {
     Article createArticle(ArticleDto articleDto);
 
     Article createArticle(ArticleRecord articleRecord);
+
+    void deleteArticle(Long articleId);
 }
