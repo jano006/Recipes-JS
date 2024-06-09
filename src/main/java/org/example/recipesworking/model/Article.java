@@ -24,6 +24,14 @@ public class Article {
         return caloriesPerGram * amountInGram;
     }
 
+    public void setAmountInGram(int amountInGram) {
+        this.amountInGram = amountInGram;
+    }
+
+    public int getAmountInGram() {
+        return amountInGram;
+    }
+
     public Article(
             String name,
             int amountInGramPerArticle,

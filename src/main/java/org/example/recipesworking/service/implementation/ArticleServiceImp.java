@@ -49,4 +49,11 @@ public class ArticleServiceImp implements ArticleService {
     public void deleteArticle(Long articleId) {
         articleRepository.deleteById(articleId);
     }
+
+    @Override
+    public Article updateArticleGrams(Long articleId, Integer gramsToBeRemoved){
+        Article article = articleRepository.getReferenceById(articleId);
+        article.setAmountInGram(article.getAmountInGram() - gramsToBeRemoved);
+        return articleRepository.save(article);
+    }
 }

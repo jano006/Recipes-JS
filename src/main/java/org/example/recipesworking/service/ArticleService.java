@@ -16,4 +16,6 @@ public interface ArticleService {
     Article createArticle(ArticleRecord articleRecord);
 
     void deleteArticle(Long articleId);
+
+    Article updateArticleGrams(Long articleId, Integer gramsToBeRemoved);
 }

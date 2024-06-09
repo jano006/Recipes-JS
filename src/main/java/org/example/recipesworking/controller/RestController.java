@@ -35,7 +35,15 @@ public class RestController {
     }
 
     @GetMapping("/mealCalories")
-    public ResponseEntity<String> calories(@RequestBody HashMap<Long,Integer> meal){
+    public ResponseEntity<String> calories(@RequestBody HashMap<Long,Integer> meal) {
+
+        Integer calories = foodService.caloriesFromMeal(meal);
+
+        return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+    }
+
+    @PostMapping("/eatMeat")
+    public ResponseEntity<String> eatMeat(@RequestBody HashMap<Long,Integer> meal) {
 
         Integer calories = foodService.caloriesFromMeal(meal);
 
