@@ -6,6 +6,7 @@ import org.example.recipesworking.model.dto.ArticleDto;
 import org.example.recipesworking.model.rcord.ArticleRecord;
 import org.example.recipesworking.service.ArticleService;
 import org.example.recipesworking.service.implementation.FoodService;
+import org.example.recipesworking.service.implementation.FoodServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,7 @@ public class RestController {
 
     private final ArticleService articleService;
     private final FoodService foodService;
+    private final FoodServiceImpl foodServiceImpl;
 
 
     @PostMapping("/createArticle")
@@ -35,26 +37,26 @@ public class RestController {
     }
 
     @GetMapping("/mealCalories")
-    public ResponseEntity<String> calories(@RequestBody HashMap<Long,Integer> meal) {
-
+    public ResponseEntity<String> calories(@RequestBody HashMap<Long, Integer> meal) {
         Integer calories = foodService.caloriesFromMeal(meal);
-
-        return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+//        return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+        return new ResponseEntity<>(calories + " kcal", HttpStatus.OK);
     }
 
-    @PostMapping("/eatMeat")
-    public ResponseEntity<String> eatMeat(@RequestBody HashMap<Long,Integer> meal) {
+    @PostMapping("/eatMeal")
+    public ResponseEntity<String> eatMeat(@RequestBody HashMap<Long, Integer> meal) {
 
         Integer calories = foodService.caloriesFromMeal(meal);
-
-        return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+        foodServiceImpl.deleteEatenFood(meal);
+//        return new ResponseEntity<>(calories / 1000 + " kcal",HttpStatus.OK);
+        return new ResponseEntity<>(calories  + " kcal", HttpStatus.OK);
     }
 
 
     @DeleteMapping("/deleteArticle")
-    public ResponseEntity<String> deleteArticle(@RequestParam Long articleId){
+    public ResponseEntity<String> deleteArticle(@RequestParam Long articleId) {
         articleService.deleteArticle(articleId);
 
-        return new ResponseEntity<>("Deleted",HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>("Deleted", HttpStatus.NO_CONTENT);
     }
 }

@@ -25,12 +25,12 @@ public class FoodServiceImpl implements FoodService{
 
           calories += getCaloriesFromArticle(articleId,grams);
       }
-      deleteEatenFood(meal);
+//      deleteEatenFood(meal);
         return calories;
 
     }
 
-    private void deleteEatenFood(HashMap<Long, Integer> meal){
+    public void deleteEatenFood(HashMap<Long, Integer> meal){
         for (var m : meal.entrySet()) {
             Long articleId = m.getKey();
             Integer grams = m.getValue();
